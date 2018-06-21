@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 using OnlineStore.Models;
 
 namespace OnlineStore.ViewModels
 {
     public class AllProductsVm
     {
-     
+      
         public string Brand { get; set; }
 
   
@@ -17,6 +18,8 @@ namespace OnlineStore.ViewModels
 
         public decimal Price { get; set; }
 
-        public ApplicationUser User { get; set; }
+       
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

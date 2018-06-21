@@ -65,5 +65,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineStore\OnlineStore.csproj">
+      <Project>{06B48DF2-F50F-4D09-B80C-9073AF8D0E32}</Project>
+      <Name>OnlineStore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

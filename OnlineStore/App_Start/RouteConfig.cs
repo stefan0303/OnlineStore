@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using OnlineStore.Models;
 
 namespace OnlineStore
 {
@@ -23,6 +24,25 @@ namespace OnlineStore
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Products", action = "AllProducts", id = UrlParameter.Optional }
             );
+          
+            routes.MapRoute(
+                name: "EditProducts",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Products", action = "EditProductDetail", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "EditProductDetail",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Products", action = "EditProduct", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+               
+                name: "NewProduct",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Products", action = "NewProduct", id = UrlParameter.Optional }
+            );
         }
+
+       
     }
 }

@@ -1,34 +1,37 @@
-﻿@using OnlineStore.ViewModels
-@model IEnumerable<AllProductsVm>
+﻿
+@using OnlineStore.Models
+@model IDictionary<ApplicationUser, List<Product>>
+@{
+    ViewBag.Title = "All Products";
+}
 <h2>All Products for Sale</h2>  
 <div>  
     <table id="t01">  
         <thead>  
         <th>Brand</th>  
         <th>Make</th>  
-        <th>Seller Name</th>     
+        <th>Seller Email</th>     
         <th>Price</th>  
         </thead>  
-        @foreach (var item in Model)  
-        {  
-  
-            <tr>  
-                <td>  
-                    @item.Brand
-                </td>  
-                <td>  
-                    @item.Make  
-                </td>  
-                <td>  
-                    @item.User
-                    
-                </td>  
-                <td>  
-                    @item.Price  
-                </td>  
-                
-            </tr>  
-  
+        @foreach (var user in Model)  
+        {
+            foreach (var product in user.Value)
+            {
+                <tr>  
+                    <td>  
+                        @product.Brand
+                    </td>  
+                    <td>  
+                        @product.Make  
+                    </td>  
+                    <td>  
+                        @user.Key.Email             
+                    </td>  
+                    <td>  
+                        @product.Price  
+                    </td>                  
+                </tr>  
+            }
         }  
   
     </table>  

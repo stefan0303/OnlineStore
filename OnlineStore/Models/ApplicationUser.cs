@@ -12,12 +12,12 @@ namespace OnlineStore.Models
     {
         public ApplicationUser()
         {
-            //this.Products =new HashSet<Product>();
+            this.Products =new List<Product>();
         }
 
         //public string Name { get; set; }
 
-        //public  IEnumerable<Product> Products{ get; set; }
+        public  List<Product> Products{ get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

@@ -1,4 +1,3 @@
-F:\OnlineStore_\OnlineStore\obj\Debug\OnlineStore.csprojResolveAssemblyReference.cache
 F:\OnlineStore_\OnlineStore\obj\Debug\OnlineStore.csproj.CoreCompileInputs.cache
 F:\OnlineStore_\OnlineStore\bin\ApplicationInsights.config
 F:\OnlineStore_\OnlineStore\bin\OnlineStore.dll.config
@@ -77,3 +76,4 @@ F:\OnlineStore_\OnlineStore\obj\Debug\OnlineStore.dll
 F:\OnlineStore_\OnlineStore\obj\Debug\OnlineStore.pdb
 F:\OnlineStore_\OnlineStore\bin\AutoMapper.dll
 F:\OnlineStore_\OnlineStore\bin\AutoMapper.xml
+F:\OnlineStore_\OnlineStore\obj\Debug\OnlineStore.csprojResolveAssemblyReference.cache

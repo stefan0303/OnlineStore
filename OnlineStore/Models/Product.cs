@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,7 +21,8 @@ namespace OnlineStore.Models
         [Range(0,int.MaxValue)]
         public decimal Price { get; set; }
 
-        //[Required]
-        //public  ApplicationUser User { get; set; } //Seller of Product
+   
+        [Required]
+        public  ApplicationUser User { get; set; } //Seller of Product
     }
 }

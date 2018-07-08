@@ -35,12 +35,11 @@ namespace OnlineStore
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Products", action = "EditProduct", id = UrlParameter.Optional }
             );
-            routes.MapRoute(
-               
-                name: "NewProduct",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Products", action = "NewProduct", id = UrlParameter.Optional }
-            );
+            //routes.MapRoute(
+            //    name: "NewProducts",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Products", action = "NewProducts", id = UrlParameter.Optional }
+            //);
         }
 
        

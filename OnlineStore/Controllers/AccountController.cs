@@ -389,6 +389,8 @@ namespace OnlineStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            //Abandon removes all session varialbles
+            Session.Abandon();
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

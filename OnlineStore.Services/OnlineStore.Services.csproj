@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineStore\OnlineStore.csproj">
-      <Project>{06B48DF2-F50F-4D09-B80C-9073AF8D0E32}</Project>
+      <Project>{06b48df2-f50f-4d09-b80c-9073af8d0e32}</Project>
       <Name>OnlineStore</Name>
     </ProjectReference>
   </ItemGroup>

@@ -76,4 +76,3 @@ F:\OnlineStore_\OnlineStore\obj\Debug\OnlineStore.dll
 F:\OnlineStore_\OnlineStore\obj\Debug\OnlineStore.pdb
 F:\OnlineStore_\OnlineStore\bin\AutoMapper.dll
 F:\OnlineStore_\OnlineStore\bin\AutoMapper.xml
-F:\OnlineStore_\OnlineStore\obj\Debug\OnlineStore.csprojResolveAssemblyReference.cache

@@ -1,70 +1,57 @@
 ﻿
-@using OnlineStore.Models
-@model IDictionary<ApplicationUser, List<Product>>
+@using Microsoft.AspNet.Identity
+@model List<OnlineStore.ViewModels.AllProductsVm>
+
 @{
     ViewBag.Title = "All Products";
 }
-<h2>All Products for Sale</h2>  
-<div>  
-    <table id="t01">  
-        <thead>  
-        <th>Brand</th>  
-        <th>Make</th>  
-        <th>Seller Email</th>     
-        <th>Price</th>  
-        </thead>  
-        @foreach (var user in Model)  
-        {
-            foreach (var product in user.Value)
-            {
-                <tr>  
-                    <td>  
-                        @product.Brand
-                    </td>  
-                    <td>  
-                        @product.Make  
-                    </td>  
-                    <td>  
-                        @user.Key.Email             
-                    </td>  
-                    <td>  
-                        @product.Price  
-                    </td>                  
-                </tr>  
-            }
-        }  
-  
-    </table>  
-</div>  
-<style>  
-    table#t01 {  
-        width: 100%;  
-        background-color: #f1f1c1;  
-    }  
-  
-    table#t01 tr:nth-child(even) {  
-        background-color: #eee;  
-    }  
-    table#t01 tr:nth-child(odd) {  
-        background-color: #fff;  
-    }  
-    table#t01 th {  
-        color: white;  
-        background-color:blue;  
-    }  
-    table, th, td {  
-        border: 1px solid black;  
-    }  
-    table, th, td {  
-        border: 1px solid black;  
-        border-collapse: collapse;  
-    }  
-    table, th, td {  
-        border: 1px solid black;  
-        border-collapse: collapse;  
-    }  
-    th, td {  
-        padding: 15px;  
-    }  
-</style> 
+
+@*We can use too there are some difference @Html.Partial("_AllProducts", Model")  *@
+@{ Html.RenderPartial("_AllProducts", Model);};
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            var id = "";
+            $('input[type="submit"]').click(function(e) {
+                id = e.target.id;
+                alert(e.target.id);
+
+                $.ajax({
+                    method: 'GET',
+                    url: '/api/Cart/AddProduct/',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: { "id": id },
+                    success: function(data) {
+
+                        $.ajax({
+                            method: 'GET',
+                            url: '/Session/GetCountOfUserCartsProducts/',                            
+                            success: function(dataTwo) {
+								alert('You add new Item to Cart');
+							
+                                $('#numProductsInCart').html(dataTwo);
+                            },
+                            error: function() {
+                                alert('Cart Count problem!');
+                            }
+                        });
+
+                        $.each(data,
+                            function(key, value) {
+                                console.log(key);
+                                console.log(value);
+                            });
+
+                    },
+                    error: function() {
+                        alert('error');
+                    }
+                });
+
+            });
+
+        });
+    </script>
+}
 

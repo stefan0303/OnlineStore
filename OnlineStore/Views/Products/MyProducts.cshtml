@@ -29,8 +29,8 @@
                   
                 </td>  
                 <td>					
-                    <button type="button" class="btn btn-primary btn-sm btn-block" onclick="location.href = '@Url.Action("Delete","Products", product)'">Delete</button>
-                    <button type="button" class="btn btn-primary btn-sm btn-block" onclick="location.href = '@Url.Action("EditProduct","Products",product)'">Edit</button>
+                    <button type="button" class="btn btn-primary  btn-lg btn-size " onclick="location.href = '@Url.Action("Delete","Products", product)'">Delete</button>
+                    <button type="button" class="btn btn-primary  btn-lg btn-size" onclick="location.href = '@Url.Action("EditProduct","Products",product)'">Edit</button>
                 </td>
             </tr>  
           
@@ -39,9 +39,13 @@
     </table>  
 </div>  
 <style>
-    .btnCreate {
-        margin-top: 15px;
+    .btn-size {
+        width: 100px;
+        display: inline-block
     }
+     .btnCreate {
+         margin-top: 15px;
+     }
     
     table#t01 {  
         width: 100%;  
@@ -73,5 +77,4 @@
         padding: 15px; 
 		
     }
- 
 </style> 

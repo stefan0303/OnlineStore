@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
 using OnlineStore.Data;
 using OnlineStore.Models;
 using OnlineStore.Services;
 using OnlineStore.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace OnlineStore.Controllers
 {
@@ -25,6 +21,15 @@ namespace OnlineStore.Controllers
 
             this.service = new ProductsService();
         }
+
+        [Authorize]
+        public ActionResult EditProduct(Product product)
+        {
+
+
+            return this.View(product);
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult EditProductDetail(Product product)
@@ -33,7 +38,7 @@ namespace OnlineStore.Controllers
             {
                 string userid = HttpContext.User.Identity.GetUserId();
 
-                using (this.context = new OnlineStoreContext())
+                using (this.context =  new OnlineStoreContext())
                 {
                     var productForEdit = context.Products.FirstOrDefault(p => p.Id == product.Id);
                     var user = context.Users.FirstOrDefault(u => u.Id == userid);
@@ -51,28 +56,44 @@ namespace OnlineStore.Controllers
 
 
         }
+
         [Authorize]
-        [HttpPost]
-    
+        [HttpGet]
+        [Route("Products/NewProducts")]
         public ActionResult NewProduct()
         {
-            if (ModelState.IsValid)
-            {
 
-            }
             return this.View();
         }
 
         [Authorize]
-        public ActionResult EditProduct(Product product)
+        [HttpPost]
+        public ActionResult CreateProduct(Product product)
         {
+            string userid = HttpContext.User.Identity.GetUserId();
+            using (context = new OnlineStoreContext())
+            {
+               var user = context.Users.FirstOrDefault(u => u.Id == userid);
+               product.User = user;
+             
+                if (ModelState.IsValid)
+                {
 
+                    context.Products.Add(product);
+                    context.SaveChanges();
 
-            return this.View(product);
+                }
+                else
+                {
+                    return View("NewProduct");
+                }
+            }
+            return RedirectToAction("MyProducts");
         }
+        
 
         // Delete Product From List
-        [Authorize]
+        [Authorize(Roles = "Admin,User")]
         public ActionResult Delete(int? id)
         {
 
@@ -89,31 +110,51 @@ namespace OnlineStore.Controllers
             return RedirectToAction("MyProducts");
             //return  MyProducts();           
         }
-        [Authorize]
-        public ActionResult AllProducts()
-        {
-            //ToDo make it with ViewModel
 
+        //[Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "User")]
+        public ActionResult DeleteAdmin(int? id)
+        {
+
+            using (this.context = new OnlineStoreContext())
+            {
+                var product = context.Products.FirstOrDefault(p => p.Id == id);
+                if (product != null)
+                {
+                    context.Products.Remove(product);
+                    context.SaveChanges();
+                }
+
+            }
+            return RedirectToAction("AllProducts");
+            //return  MyProducts();           
+        }
+        //[OutputCache(Duration = 10)]
+        [Authorize]
+        public  ActionResult AllProducts()
+        {
+            
+            List<AllProductsVm> allUsersAndProducts = new List<AllProductsVm>();
             IEnumerable<ApplicationUser> users;
             using (context = new OnlineStoreContext())
             {
                 users = context.Users.ToList();
             }
-
-
-            IDictionary<ApplicationUser, List<Product>> userProducts = new Dictionary<ApplicationUser, List<Product>>();
             foreach (var user in users)
             {
+                AllProductsVm allProducts = new AllProductsVm();
                 using (context = new OnlineStoreContext())
                 {
                     var products = context.Products.Where(p => p.User.Id == user.Id).ToList();
-                    userProducts.Add(user, products);
+                    allProducts.User = user;
+                    allProducts.Products = products;
+
+                    allUsersAndProducts.Add(allProducts);
                 }
 
-            }
-
-            return View(userProducts);
-        }
+            }       
+            return View("AllProducts", allUsersAndProducts);
+        } 
 
 
         [Authorize]

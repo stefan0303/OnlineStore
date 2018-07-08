@@ -7,11 +7,12 @@ using System.Web.Mvc;
 namespace OnlineStore.Controllers
 {
     [Authorize(Roles = "User,Admin")]//Only User and Admins can see this Action Views
-   
+
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
+            
             return View();
         }
         [Authorize(Roles = "Admin")] //Only admin can see About
@@ -29,6 +30,6 @@ namespace OnlineStore.Controllers
             return View();
         }
 
-        
+
     }
 }

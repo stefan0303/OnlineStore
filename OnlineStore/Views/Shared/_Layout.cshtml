@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,7 +27,15 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Products", "AllProducts", "Products")</li>
                     <li>@Html.ActionLink("MyProducts", "MyProducts", "Products")</li>
-                    <li>@Html.ActionLink("New Product", "NewProduct", "Products")</li>
+                    <li>@Html.ActionLink("New Product", "NewProduct", "Products")</li>					
+					    <li class="active">
+					        <a href="@Url.Action("Index", "Home")" class="btn btn-info btn-lg">  
+					            <span class="glyphicon glyphicon-shopping-cart" style="color: green">
+					            </span>
+					            My Cart 						
+					            <span class="badge" id="numProductsInCart">@Session["count"]</span>					    
+					        </a> 
+					    </li>              
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -15,6 +15,7 @@ namespace OnlineStore
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+      
         protected void Application_Start()
         {
             this.RegisterMaps();

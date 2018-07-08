@@ -21,7 +21,7 @@ namespace OnlineStore.Data
         public DbSet<Product> Products { get; set; }
 
         public static OnlineStoreContext Create()
-        {
+       {
             OnlineStoreContext context = new OnlineStoreContext();
 
             return context;

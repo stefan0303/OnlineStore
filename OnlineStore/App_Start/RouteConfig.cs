@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using OnlineStore.Controllers;
 using OnlineStore.Models;
 
 namespace OnlineStore
@@ -13,6 +15,11 @@ namespace OnlineStore
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            ).RouteHandler = new SessionStateRouteHandler();
 
             routes.MapRoute(
                 name: "Default",
@@ -34,6 +41,11 @@ namespace OnlineStore
                 name: "EditProductDetail",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Products", action = "EditProduct", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "DeleteProductFromCart",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Session", action = "DeleteProductFromCart", id = UrlParameter.Optional }
             );
             //routes.MapRoute(
             //    name: "NewProducts",

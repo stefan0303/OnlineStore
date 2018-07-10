@@ -1,4 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using Microsoft.Owin;
+using OnlineStore.Controllers;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(OnlineStore.Startup))]
@@ -11,4 +15,6 @@ namespace OnlineStore
             ConfigureAuth(app);
         }
     }
+
+  
 }

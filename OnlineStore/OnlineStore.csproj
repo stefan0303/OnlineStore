@@ -219,7 +219,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
@@ -229,6 +228,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AllProductsVm.cs" />
     <Compile Include="ViewModels\ProductsAndUsersViewModel.cs" />
+    <Compile Include="ViewModels\ProductsInCartVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -295,10 +295,10 @@
     <Content Include="Views\Products\NewProduct.cshtml" />
     <Content Include="Views\Product_Search\View.cshtml" />
     <Content Include="Views\Shared\_AllProducts.cshtml" />
+    <Content Include="Views\Session\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cart\" />
     <Folder Include="Views\Shared\Products\" />
   </ItemGroup>
   <ItemGroup>
